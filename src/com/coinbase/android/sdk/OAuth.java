@@ -41,8 +41,7 @@ public class OAuth {
         URI coinbaseAppUri = getCoinbaseAppUri(request);
 
         Intent intent = new Intent(Intent.ACTION_VIEW);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-	Uri androidCoinbaseAppUri = Uri.parse(coinbaseAppUri.toString());
+	    Uri androidCoinbaseAppUri = Uri.parse(coinbaseAppUri.toString());
         androidCoinbaseAppUri = androidCoinbaseAppUri.buildUpon().appendQueryParameter("state", getLoginCSRFToken(context)).build();
         intent.setData(androidCoinbaseAppUri);
 
@@ -58,6 +57,7 @@ public class OAuth {
             URI authorizationUri = coinbase.getAuthorizationUri(request);
 
             Intent i = new Intent(Intent.ACTION_VIEW);
+            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             Uri androidUri = Uri.parse(authorizationUri.toString());
             androidUri = androidUri.buildUpon().appendQueryParameter("state", getLoginCSRFToken(context)).build();
             i.setData(androidUri);
