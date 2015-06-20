@@ -36,6 +36,7 @@ public class OAuth {
         URI authorizationUri = coinbase.getAuthorizationUri(request);
 
         Intent i = new Intent(Intent.ACTION_VIEW);
+        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Uri androidUri = Uri.parse(authorizationUri.toString());
         androidUri = androidUri.buildUpon().appendQueryParameter("state", getLoginCSRFToken(context)).build();
         i.setData(androidUri);
